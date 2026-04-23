@@ -13,15 +13,14 @@ connectDB();
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://mern-authentication-system-five.vercel.app'
 ];
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl) or allowed origins
-        if (!origin || allowedOrigins.includes(origin)) {
+        // Allow requests with no origin or allowed origins or any vercel subdomain
+        if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
