@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: (origin, callback) => {
-        // Allow requests with no origin or allowed origins or any vercel subdomain
-        if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+        // If it's a local development request or matches vercel.app, allow it
+        if (!origin || allowedOrigins.includes(origin) || origin.includes('vercel.app')) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
