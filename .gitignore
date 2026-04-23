@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables
+.env
+client/.env
+server/.env
+
+# Private Study Notes (Not for the company)
+PREPARATION_GUIDE.md
+
+# Build Folders
+client/dist/
+client/build/
+
+# OS Files
+.DS_Store
+Thumbs.db
