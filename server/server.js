@@ -13,8 +13,7 @@ connectDB();
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://' + process.env.VERCEL_URL, // Auto-detect Vercel URL if available
-    'https://mern-auth-system-nine.vercel.app' // Fallback for your specific deployment
+    'https://mern-authentication-system-five.vercel.app'
 ];
 
 app.use(express.json());
