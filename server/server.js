@@ -11,11 +11,23 @@ const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://' + process.env.VERCEL_URL, // Auto-detect Vercel URL if available
+    'https://mern-auth-system-nine.vercel.app' // Fallback for your specific deployment
+];
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl) or allowed origins
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }));
 
