@@ -8,9 +8,9 @@ import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE } from '../config/emailT
 // httpOnly: true makes the cookie inaccessible to client-side scripts, preventing XSS attacks
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
+    secure: process.env.NODE_ENV === 'production' || true, // Force secure for production
+    sameSite: 'none', // Required for cross-site cookies
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
 };
 
 /**
